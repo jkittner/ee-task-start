@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ee-task-start
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  A tool to start or cancel all running tasks in the google earthengine playground
 // @author       Jonas Kittner: https://github.com/theendlessriver13
 // @match        https://code.earthengine.google.com/
