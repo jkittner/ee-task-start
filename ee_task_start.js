@@ -14,7 +14,7 @@
 
   function run() {
     let tasks = document.getElementsByClassName(
-      "task local type-EXPORT_IMAGE awaiting-user-config"
+      "task local awaiting-user-config"
     );
     for (let i = 0; i < tasks.length; i++) {
       tasks[i].getElementsByClassName("run-button")[0].click();
@@ -23,7 +23,7 @@
 
   function cancel_submitted() {
     let running_tasks = document.getElementsByClassName(
-      "task local type-EXPORT_IMAGE submitted-to-backend"
+      "task local submitted-to-backend"
     );
     for (let i = 0; i < running_tasks.length; i++) {
       running_tasks[i].getElementsByClassName("indicator")[0].click();
@@ -32,7 +32,7 @@
 
   function cancel_running() {
     let running_tasks = document.getElementsByClassName(
-      "task local type-EXPORT_IMAGE running-on-backend"
+      "task local running-on-backend"
     );
     for (let i = 0; i < running_tasks.length; i++) {
       running_tasks[i].getElementsByClassName("indicator")[0].click();
