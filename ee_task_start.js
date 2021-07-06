@@ -14,7 +14,7 @@
 
   function run() {
     let tasks = document.getElementsByClassName(
-      "task local type-EXPORT_IMAGE awaiting-user-config"
+      "task local awaiting-user-config"
     );
     for (let i = 0; i < tasks.length; i++) {
       tasks[i].getElementsByClassName("run-button")[0].click();
@@ -23,7 +23,7 @@
 
   function cancel_submitted() {
     let running_tasks = document.getElementsByClassName(
-      "task local type-EXPORT_IMAGE submitted-to-backend"
+      "task local submitted-to-backend"
     );
     for (let i = 0; i < running_tasks.length; i++) {
       running_tasks[i].getElementsByClassName("indicator")[0].click();
@@ -32,10 +32,51 @@
 
   function cancel_running() {
     let running_tasks = document.getElementsByClassName(
-      "task local type-EXPORT_IMAGE running-on-backend"
+      "task local running-on-backend"
     );
     for (let i = 0; i < running_tasks.length; i++) {
       running_tasks[i].getElementsByClassName("indicator")[0].click();
+    }
+  }
+  async function wait_until_asset_is_filled(element) {
+    return await new Promise((resolve) => {
+      const interval = setInterval(() => {
+        if (
+          element.getElementsByClassName("jfk-textinput asset-id")[0].value !=
+          ""
+        ) {
+          resolve(element);
+          clearInterval(interval);
+        }
+      }, 50);
+    });
+  }
+
+  function confirm_start() {
+    let confirm_dialog = document.getElementsByClassName(
+      "modal-dialog task-config-dialog"
+    );
+
+    for (let i = 0; i < confirm_dialog.length; i++) {
+      if (
+        confirm_dialog[i].getElementsByClassName(
+          "jfk-radiobutton jfk-radiobutton-checked"
+        )[0].innerText == "EE Asset"
+      ) {
+        wait_until_asset_is_filled(confirm_dialog[i]).then((element) => {
+          element
+            .getElementsByClassName(
+              "goog-buttonset-default goog-buttonset-action"
+            )[0]
+            .click();
+        });
+      } else {
+        confirm_dialog[i]
+          .getElementsByClassName(
+            "goog-buttonset-default goog-buttonset-action"
+          )[0]
+          .click();
+      }
     }
   }
 
@@ -48,9 +89,9 @@
     }
   }
 
-  function downlaod_all() {
+  function download_all() {
     run();
-    confirm();
+    confirm_start();
   }
 
   function cancel_all_submitted() {
@@ -87,7 +128,7 @@
   box.appendChild(btn_run);
   box.appendChild(btn_cancel);
   box.appendChild(btn_cancel_running);
-  btn_run.onclick = downlaod_all;
+  btn_run.onclick = download_all;
   btn_cancel.onclick = cancel_all_submitted;
   btn_cancel_running.onclick = cancel_all_running;
 })();
