@@ -2,6 +2,8 @@
 
 # ee-task-start
 
+**earth engine now has a [task manager](https://developers.google.com/earth-engine/changelog#code_editor) so this will be unmaintained**
+
 this user script adds three buttons to the google earthengine UI. It is based on the free version of [gee_monkey](https://github.com/gee-hydro/gee_monkey) by [gee-hydro](https://github.com/gee-hydro), licensed under MIT [included here](https://github.com/theendlessriver13/ee-task-start/blob/master/LICENSE_gee_monkey)
 
 - `start all`: will start all created tasks in the Tasks tab
